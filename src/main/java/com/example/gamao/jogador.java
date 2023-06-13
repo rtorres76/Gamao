@@ -33,28 +33,21 @@ public class jogador implements Serializable {
      //--Adiciona peça branca á casa do jogador
      */
     public void addpecabranca() {
-
-        //--
-
+        pecas.add(new peca("jog1", posX + 25, posY + correcaoposy()));
     }
 
     /**
      //--Adiciona peça preta á casa do jogador
      */
     public void addpecapreta() {
-
-        //--
-
+        pecas.add(new peca("jog2", posX + 25, posY + correcaoposy()));
     }
 
     /**
      //--Adiciona peça em branco
      */
     public void addpecablank() {
-
-
-        //--
-
+        pecas.add(new peca("", posX + 25, posY + correcaoposy()));
     }
 
     /**
@@ -64,21 +57,20 @@ public class jogador implements Serializable {
      @return retorna a correção da posição
      */
     public int correcaoposy() {
-
-
-        //--
-
-        return 0;
+        int posycorr = pecas.size() * 10;
+        if (id > 12) {
+            posycorr *= -1;
+            posycorr += 160;
+        } else {
+            posycorr += 20;
+        }
+        return posycorr;
     }
 
     /**
      //--Remove peça do array
      */
     public void rempeca() {
-
-        //--
-
+        pecas.remove(pecas.size() - 1);
     }
-
-
 }
