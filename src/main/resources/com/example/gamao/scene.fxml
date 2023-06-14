@@ -6,6 +6,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 <Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="com.example.gamao.HelloController">
     <children>
         <ImageView fitHeight="420.0" fitWidth="804.0" pickOnBounds="true" preserveRatio="true">
@@ -14,6 +15,41 @@
             </image>
         </ImageView>
         <Button layoutX="214.0" layoutY="159.0" mnemonicParsing="false" onAction="#selecionarbrancas" prefHeight="45.0" prefWidth="84.0" text="Brancas">
+            <font>
+                <Font name="Dubai Regular" size="18.0" />
+            </font>
+        </Button>
+        <ImageView fx:id="myImageView" fitHeight="150.0" fitWidth="200.0" layoutX="52.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@assets/d.jpg" />
+            </image>
+        </ImageView>
+        <Text fill="RED" layoutX="292.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gamão" wrappingWidth="215.17258175033763">
+            <font>
+                <Font name="Magneto Bold" size="48.0" />
+            </font>
+        </Text>
+        <Button fx:id="iniciar" layoutX="256.0" layoutY="273.0" mnemonicParsing="false" onAction="#iniciarjogo" prefHeight="88.0" prefWidth="189.0" text="Iniciar">
+            <font>
+                <Font name="Dubai Regular" size="36.0" />
+            </font>
+        </Button>
+        <Button layoutX="214.0" layoutY="106.0" mnemonicParsing="false" onAction="#selecionarpretas" prefHeight="36.0" prefWidth="85.0" text="Pretas">
+            <font>
+                <Font name="Dubai Regular" size="18.0" />
+            </font>
+        </Button>
+        <ImageView fx:id="myImageView2" fitHeight="150.0" fitWidth="200.0" layoutX="351.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@assets/tabuleiroinicio.jpg" />
+            </image>
+        </ImageView>
+        <Button layoutX="562.0" layoutY="106.0" mnemonicParsing="false" onAction="#selecionartabinicio" prefHeight="36.0" prefWidth="85.0" text="Inicio">
+            <font>
+                <Font name="Dubai Regular" size="18.0" />
+            </font>
+        </Button>
+        <Button layoutX="563.0" layoutY="159.0" mnemonicParsing="false" onAction="#selecionartabfim" prefHeight="45.0" prefWidth="84.0" text="Fim">
             <font>
                 <Font name="Dubai Regular" size="18.0" />
             </font>
