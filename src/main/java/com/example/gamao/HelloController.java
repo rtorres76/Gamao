@@ -401,6 +401,205 @@ public class HelloController {
         cancelar.setOnMouseClicked(event -> cancelarjog());
         pane.getChildren().add(bdados);
         pane.getChildren().add(cancelar);
+    }
 
+    //Metodo que cria e imprime dados para o ecra invoca
+    //{@link backgammonfx.dado#rodadado} para dado 1 invoca
+    //{@link backgammonfx.dado#rodadado} para dado 2
+    public void imprimedados() {
+
+        tab1.dado1.rodadado(pane, 1);
+        tab1.dado2.rodadado(pane, 2);
+        ronda.setText("Selecione casa origem");
+        bdados.setText("Passar Jogada");
+        bdados.setDisable(false);
+
+        bdados.setOnMouseClicked(event1 -> passarjogada());
+        phase = 2;
+        System.out.println("Fase de jogo:" + phase);
+    }
+
+    //--------------------------------------------JOGADAS-----------------------------------------------
+    //verifica se posicao de destino encontra se vazia e caso nao esteja vazia
+    //se contem peças do oponente
+    //@param posID posição que irá ser verificada
+    //@return boolean que representa se é clicavel ou não
+    public boolean clicavel(int posID) {
+        try {
+            if (!tab1.casas.get(posID).pecas.isEmpty()) {
+                if (jogador.compareTo(tab1.casas.get(posID).pecas.get(0).jogador) == 0) {
+                    return true;
+                } else if (tab1.casas.get(posID).pecas.size() == 1) {
+                    System.out.println("SIZE :" + tab1.casas.get(posID).pecas.size());
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return true;
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+            return false;
+        }
+    }
+
+    //Metodo associado ao primeiro click (selecionar a peça a mover) preve onde
+    //a peça poderá se mover (a partir da soma com o dado 1 e dado 2) e muda a
+    //cor das casas assim como bloqueia as casas para onde não se pode mover
+    public void click1() {
+
+        iniH = tab1.casas.get(iniID).pecas.size() - 1;
+        iniX = tab1.casas.get(iniID).pecas.get(iniH).posX;
+        iniY = tab1.casas.get(iniID).pecas.get(iniH).posY;
+        phase = 3;
+        System.out.println("Fase de jogo:" + phase);
+        ronda.setText("Selecione casa destino");
+
+        //Caso tenha casas no meio fica automaticamente selecionado o centro;
+        if ("jog1".equals(jogador)) {
+            if (!tab1.casas.get(0).vazio()) {
+                ronda.setText("Tem de jogar a casa do meio");
+                iniID = 0;
+                iniH = tab1.casas.get(iniID).pecas.size() - 1;
+                iniX = tab1.casas.get(iniID).pecas.get(iniH).posX;
+                iniY = tab1.casas.get(iniID).pecas.get(iniH).posY;
+            }
+
+            posID1 = iniID + tab1.dado1.face;
+            posID2 = iniID + tab1.dado2.face;
+
+        } else {
+            if (!tab1.casas.get(25).vazio()) {
+                ronda.setText("Tem de jogar a casa do meio");
+                iniID = 25;
+                iniH = tab1.casas.get(iniID).pecas.size() - 1;
+                iniX = tab1.casas.get(iniID).pecas.get(iniH).posX;
+                iniY = tab1.casas.get(iniID).pecas.get(iniH).posY;
+            }
+            posID1 = iniID - tab1.dado1.face;
+            posID2 = iniID - tab1.dado2.face;
+
+        }
+
+        //correção automatica de foreach feita pelo netbeans (functional operation ?)
+        Rects.forEach((f) -> {
+            f.setDisable(true);
+
+        });
+        //desbloqueio da ultima posicao
+        Rects.get(iniID).setFill(Color.RED);
+        if (fimjogo) {
+            if (!tab1.dado1.uso && posID1 >= 25 || posID1 <= 0) {
+                Rects.get(jog.id).setDisable(false);
+                Rects.get(jog.id).setFill(Color.DARKSEAGREEN);
+                System.out.println("id do jog ativado" + jog.id);
+            }
+            if (!tab1.dado2.uso && posID2 >= 25 || posID2 <= 0) {
+                Rects.get(jog.id).setDisable(false);
+                Rects.get(jog.id).setFill(Color.DARKSEAGREEN);
+                System.out.println("id do jog ativado" + jog.id);
+            }
+        }
+
+        if (!tab1.dado1.uso && clicavel(posID1)) {
+            Rects.get(posID1).setFill(Color.DARKSEAGREEN);
+            Rects.get(posID1).setDisable(false);
+        }
+        if (!tab1.dado2.uso && clicavel(posID2)) {
+            Rects.get(posID2).setFill(Color.DARKSEAGREEN);
+            Rects.get(posID2).setDisable(false);
+        }
+
+    }
+
+    //Metodo associado ao segundo click (seleção de onde a peça irá mover) caso
+    //a posição final seja uma casa de um jogador invoca
+    //{@link backgammonfx.FXMLDocumentController#clickfimjogo()} caso a posição
+    //final seja outra invoca
+    //{@link backgammonfx.FXMLDocumentController#clicknormal()}
+    public void click2() {
+        System.out.print(finID);
+
+        if (finID == 0 || finID == 25) {
+            //nao é aceite
+
+        } else if (finID == 26 || finID == 27) {
+            if (finID == jog.id) {
+                clickfimjogo();
+                movepeca(finX - iniX, finY - iniY);
+            }
+        } else {
+            clicknormal();
+            movepeca(finX - iniX, finY - iniY);
+        }
+
+        //  for (Rectangle f : Rects) {
+        //        f.setDisable(true);
+    }
+
+    //Click associado a peça sair para a casa do jogador no final invoca
+    //{@link backgammonfx.FXMLDocumentController#condicaovitoria}
+    public void clickfimjogo() {
+        //Adicionar peça para acertar a posição da animação final
+        jog.addpecablank();
+        //verificar o  H (id da ultima peça dentro da casa)
+        finH = jog.pecas.size() - 1;
+        finX = jog.pecas.get(finH).posicaoX;
+        finY = jog.pecas.get(finH).posicaoY;
+        //Remove peça blank
+        jog.rempeca();
+        if ("jog1".compareTo(jogador) == 0) {
+            jog.addpecabranca();
+        }
+        if ("jog2".compareTo(jogador) == 0) {
+            jog.addpecapreta();
+        }
+        //Remove peça do inicio
+        tab1.casas.get(iniID).rempeca();
+        Rects.get(finID).setFill(Color.BLUE);
+        //verificar que dado escolheu
+
+        //caso a pos de destino seja 27 as peças estao a moverse na direcao contraria entao é necessario verificaçao de dados diferente
+        if (finID == 27) {
+            posID1 = posID1 * -1 + 27;
+            posID2 = posID2 * -1 + 27;
+        }
+        if (finID == 26) {
+            posID1 += 1;
+            posID2 += 1;
+        }
+//função para usar o menor dos dois dados
+        if (posID1 <= posID2) {
+            if (posID1 >= finID && !tab1.dado1.uso) {
+                tab1.dado1.usadado();
+                phase = 2;
+                System.out.println("Fase de jogo:" + phase);
+
+            } else if (posID2 >= finID) {
+                tab1.dado2.usadado();
+                phase = 2;
+                System.out.println("Fase de jogo:" + phase);
+            }
+        } else if (posID1 >= posID2) {
+            if (posID2 >= finID && !tab1.dado2.uso) {
+                tab1.dado2.usadado();
+                phase = 2;
+                System.out.println("Fase de jogo:" + phase);
+            } else if (posID1 >= finID) {
+                tab1.dado1.usadado();
+                phase = 2;
+                System.out.println("Fase de jogo:" + phase);
+            }
+        }
+
+        if (tab1.dado1.uso && tab1.dado2.uso) {
+            phase = 4;
+            System.out.println("Fase de jogo:" + phase);
+            ronda.setText("Passe jogada");
+        } else {
+            ronda.setText("Selecione casa origem");
+        }
+        condicaovitoria(jog);
     }
 }
