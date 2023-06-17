@@ -273,7 +273,7 @@ public class HelloController {
     public void imprimepecasjog(int id, jogador jog) {
         for (int h = 0; h < jog.pecas.size(); h++) {
 
-            Circs[id][h] = new Circle(jog.pecas.get(h).posX, jog.pecas.get(h).posY, 18);
+            Circs[id][h] = new Circle(jog.pecas.get(h).posicaoX, jog.pecas.get(h).posicaoY, 18);
 
             if ("jog1".compareTo(jog.jogador) == 0) {
                 Circs[id][h].setFill(Color.WHITE);
@@ -354,7 +354,7 @@ public class HelloController {
         for (int i = 0; i <= 25; i++) {
             for (int h = 0; h < tab1.casas.get(i).pecas.size(); h++) {
 
-                Circs[i][h] = new Circle(tab1.casas.get(i).pecas.get(h).posX, tab1.casas.get(i).pecas.get(h).posY, 18);
+                Circs[i][h] = new Circle(tab1.casas.get(i).pecas.get(h).posicaoX, tab1.casas.get(i).pecas.get(h).posicaoY, 18);
 
                 if ("jog1".compareTo(tab1.casas.get(i).pecas.get(h).jogador) == 0) {
                     Circs[i][h].setFill(Color.WHITE);
@@ -450,8 +450,8 @@ public class HelloController {
     public void click1() {
 
         iniH = tab1.casas.get(iniID).pecas.size() - 1;
-        iniX = tab1.casas.get(iniID).pecas.get(iniH).posX;
-        iniY = tab1.casas.get(iniID).pecas.get(iniH).posY;
+        iniX = tab1.casas.get(iniID).pecas.get(iniH).posicaoX;
+        iniY = tab1.casas.get(iniID).pecas.get(iniH).posicaoY;
         phase = 3;
         System.out.println("Fase de jogo:" + phase);
         ronda.setText("Selecione casa destino");
@@ -462,8 +462,8 @@ public class HelloController {
                 ronda.setText("Tem de jogar a casa do meio");
                 iniID = 0;
                 iniH = tab1.casas.get(iniID).pecas.size() - 1;
-                iniX = tab1.casas.get(iniID).pecas.get(iniH).posX;
-                iniY = tab1.casas.get(iniID).pecas.get(iniH).posY;
+                iniX = tab1.casas.get(iniID).pecas.get(iniH).posicaoX;
+                iniY = tab1.casas.get(iniID).pecas.get(iniH).posicaoY;
             }
 
             posID1 = iniID + tab1.dado1.face;
@@ -474,8 +474,8 @@ public class HelloController {
                 ronda.setText("Tem de jogar a casa do meio");
                 iniID = 25;
                 iniH = tab1.casas.get(iniID).pecas.size() - 1;
-                iniX = tab1.casas.get(iniID).pecas.get(iniH).posX;
-                iniY = tab1.casas.get(iniID).pecas.get(iniH).posY;
+                iniX = tab1.casas.get(iniID).pecas.get(iniH).posicaoX;
+                iniY = tab1.casas.get(iniID).pecas.get(iniH).posicaoY;
             }
             posID1 = iniID - tab1.dado1.face;
             posID2 = iniID - tab1.dado2.face;
