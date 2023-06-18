@@ -602,4 +602,208 @@ public class HelloController {
         }
         condicaovitoria(jog);
     }
+
+    //Clique associado a peça a mover para casa
+    public void clicknormal() {
+        //Adicionar peça para acertar a posição da animação final
+        tab1.casas.get(finID).addpecablank();
+        //verificar o  H (id da ultima peça dentro da casa)
+        finH = tab1.casas.get(finID).pecas.size() - 1;
+        finX = tab1.casas.get(finID).pecas.get(finH).posicaoX;
+        finY = tab1.casas.get(finID).pecas.get(finH).posicaoY;
+        //Remove peça blank
+        tab1.casas.get(finID).rempeca();
+        comivel();
+        if ("jog1".compareTo(jogador) == 0) {
+            tab1.casas.get(finID).addpecabranca();
+
+        }
+        if ("jog2".compareTo(jogador) == 0) {
+            tab1.casas.get(finID).addpecapreta();
+        }
+
+        //Remove peça do inicio
+        tab1.casas.get(iniID).rempeca();
+        //verifica se o jogo se encontra na fase final (apos estar na fase final nao verifica mais)
+        if (!fimjogo) {
+            fimjogo = tab1.fimdejogo(jogador);
+        }
+        Rects.get(finID).setFill(Color.BLUE);
+        //verificar que dado escolheu (a segunda condição é para caso os dois dados sejam iguais)
+        if (finID == posID1 && !tab1.dado1.uso) {
+            tab1.dado1.usadado();
+            phase = 2;
+            System.out.println("Fase de jogo:" + phase);
+        } else if (finID == posID2) {
+            tab1.dado2.usadado();
+            phase = 2;
+            System.out.println("Fase de jogo:" + phase);
+        }
+
+        if (tab1.dado1.uso && tab1.dado2.uso) {
+            phase = 4;
+            System.out.println("Fase de jogo:" + phase);
+            ronda.setText("Passe jogada");
+        } else {
+            ronda.setText("Selecione casa origem");
+        }
+    }
+
+    //Metodo invocado a partir de botão cancelar cancela a posição escolhida
+    //com o click1 e retorna phase para 2
+    public void cancelarjog() {
+        if (phase == 3) {
+            imprime();
+            phase = 2;
+            System.out.println("Fase de jogo:" + phase);
+        }
+    }
+    //---------------------------------server-----------------------------------------
+
+    //Metodo que passa a jogada para o outro jogador envia o tabuleiro e os
+    //jogadores ao cliente
+    public void passarjogada() {
+        bdados.setDisable(true);
+        //envia pecas
+        try {
+            servidor.enviarPecas(tab1);
+        } catch (IOException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+        //envia jog
+        try {
+            servidor.enviarJog(jog);
+        } catch (IOException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+        //envia adv
+        try {
+            servidor.enviarJog(adv);
+        } catch (IOException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+
+        phase = 5;
+        System.out.println("Fase de jogo:" + phase);
+
+        receberjogada();
+    }
+
+    //Recebe a jogada do jogador adversario invoca
+    //{@link backgammonfx.Server#receberpecas} invoca
+    //{@link backgammonfx.Server#receberJog()} para jogador 1 invoca
+    //{@link backgammonfx.Server#receberJog()} para jogador 2
+    public void receberjogada() {
+        //recebe pecas
+        try {
+            tab1.casas = servidor.receberpecas();
+        } catch (IOException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+        //recebe jog (adv)
+        try {
+            adv = servidor.receberJog();
+        } catch (IOException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+        //recebe adv (jog)
+        try {
+            jog = servidor.receberJog();
+        } catch (IOException | ClassNotFoundException ex) {
+            System.out.println(ex);
+
+        }
+
+        pane.getChildren().clear();
+        imprime();
+        imprimeronda();
+        ronda.setText("Jogada recebida");
+        imprimebotao();
+        bdados.setDisable(false);
+        bdados.setOnMouseClicked(event -> animadados());
+        phase = 1;
+        System.out.println("Fase de jogo:" + phase);
+        tab1.dado1.resetdado();
+        tab1.dado2.resetdado();
+
+    }
+    //---------------------------------server-----------------------------------------
+
+    //Verifica se um espaço contem uma peça adversaria e caso tenha invoca
+    //{@link backgammonfx.casa#addpecabranca()} ou
+    //{@link backgammonfx.casa#addpecapreta()} para inserir a peça no centro e
+    //em seguida invoca {@link backgammonfx.casa#rempeca()} para remover a peça
+    public void comivel() {
+        //Só há uma situação em que a peça pousa numa peça adversária (clicavel) que é quando esta é comivel
+        if (!tab1.casas.get(finID).pecas.isEmpty()) {
+            if (tab1.casas.get(finID).pecas.get(finH - 1).jogador.compareTo(jogador) != 0) {
+                //finH é a posicao da peça em branco que foi removida
+                if ("jog1".equals(jogador)) {
+                    tab1.casas.get(25).addpecapreta();
+                }
+                if ("jog2".equals(jogador)) {
+                    tab1.casas.get(0).addpecabranca();
+                }
+                //remove a peça do adversario
+                tab1.casas.get(finID).rempeca();
+            }
+        }
+    }
+
+    //verifica se todas as peças brancas se encontram na casa do jogador
+    //@param jog jogador ao qual irá ser verificado
+    public void condicaovitoria(jogador jog) {
+        if (jog.pecas.size() >= 15) {
+            ronda.setTextFill(Color.GOLD);
+            ronda.setScaleX(5);
+            ronda.setScaleY(5);
+            ronda.setLayoutX(100);
+            ronda.setLayoutY(20);
+            ronda.setRotate(0.2);
+            ronda.setText(jog.jogador + "GANHOU !!!!");
+
+            animavitoria();
+            Rects.forEach((f) -> {
+                f.setDisable(true);
+                System.out.print(f.getId());
+            });
+            bdados.setText("Guardar pontuação");
+            bdados.setOnMouseClicked(event -> guardascore(event));
+            cancelar.setDisable(true);
+
+            phase = 6;
+            System.out.println("Fase de jogo:" + phase);
+            pane.getChildren().remove(ronda);
+            pane.getChildren().add(ronda);
+        }
+
+    }
+
+    //Animação do texto no centro do ecra para vitoria do jogador
+    public void animavitoria() {
+        //Instantiating TranslateTransition class
+        TranslateTransition translate = new TranslateTransition();
+        //shifting the X coordinate of the centre of the circle by 400
+        translate.setByX(200);
+        //setting the duration for the Translate transition
+        translate.setDuration(Duration.millis(500));
+        //setting cycle count for the Translate transition
+        translate.setCycleCount(100);
+        //the transition will set to be auto reversed by setting this to true
+        translate.setAutoReverse(true);
+        //setting Circle as the node onto which the transition will be applied
+        translate.setNode(ronda);
+        //playing the transition
+        translate.play();
+    }
+
+    //@param event evento associado ao click do mouse, não é utilizado
+    public void guardascore(MouseEvent event) {
+        pane.getChildren().clear();
+        try {
+            servidor.CloseServer();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(HelloController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
