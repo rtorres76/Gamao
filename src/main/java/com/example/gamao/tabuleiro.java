@@ -88,9 +88,6 @@ public class tabuleiro {
             casas.get(1).addpecapreta();
         }
         casas.get(7).addpecapreta();
-
-
-
     }
 
     //Testa se todas as peças do jogador encontram-se no ultimo quadrante</p>
