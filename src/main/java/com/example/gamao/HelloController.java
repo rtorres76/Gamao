@@ -50,7 +50,7 @@ public class HelloController {
     @FXML
     static Circle[][] Circs;
     //Servidor
-    //Server servidor;
+    Server servidor;
     //Animação de transição
     TranslateTransition moves;
     //Posição (X e Y) id(posição no array casas), e h(posição no array peças) FINAL
