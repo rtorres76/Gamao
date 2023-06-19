@@ -1,4 +1,4 @@
-package com.example.gamao;
+package gamaofx;
 
 import java.io.*;
 import java.net.*;
@@ -16,8 +16,8 @@ public class Server {
 
     //Construtor
     //dá inicio ao servidor e pede ao cliente um packet para testar a ligação
-    //invoca {@link backgammonfx.Server#StartServer}
-    //invoca {@link backgammonfx.Server#receber}
+    //invoca {@link gamaofx.Server#StartServer}
+    //invoca {@link gamaofx.Server#receber}
     //@throws Exception caso o cliente não responda ou não consiga encontrar a classe
     public Server() throws Exception {
         StartServer();

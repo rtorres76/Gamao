@@ -1,4 +1,4 @@
-package com.example.gamao;
+package gamaofx;
 
 import java.util.ArrayList;
 
@@ -39,7 +39,7 @@ public class tabuleiro {
     }
 
     //Preenche cada casa do array com a disposição de peças de um jogo normal</p>
-    //Invoca em cada uma das casas dentro do array, o metodo {@link backgammonfx.casa#addpecabranca} e {@link backgammonfx.casa#addpecapreta}
+    //Invoca em cada uma das casas dentro do array, o metodo {@link gamaofx.casa#addpecabranca} e {@link gamaofx.casa#addpecapreta}
     public final void iniciapecas() {
 
         //pecas brancas
@@ -75,7 +75,7 @@ public class tabuleiro {
 
 
     //Preenche cada casa do array com a disposição de peças para testar as a fase final do jogo</p>
-    //Invoca em cada uma das casas dentro do array, o metodo {@link backgammonfx.casa#addpecabranca} e {@link backgammonfx.casa#addpecapreta}
+    //Invoca em cada uma das casas dentro do array, o metodo {@link gamaofx.casa#addpecabranca} e {@link gamaofx.casa#addpecapreta}
     public final void iniciapecastesteFinal() {
 
         for (int i = 0; i < 14; i++) {

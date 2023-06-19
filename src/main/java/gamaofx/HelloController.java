@@ -1,4 +1,4 @@
-package com.example.gamao;
+package gamaofx;
 
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
@@ -14,7 +14,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -73,6 +72,13 @@ public class HelloController implements Initializable{
     int jogid = 26, advid = 27;
 
     public void initialize(URL url, ResourceBundle rb) {
+        phase = 0;
+        //Server start recebe msg de teste
+        try {
+            servidor = new Server();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
 
         //--Inicio Jogo
 
@@ -115,7 +121,7 @@ public class HelloController implements Initializable{
     }
     //Metodo ativado a partir de botão na tabela inicial
     //Muda a imagem do scene builder para tabinicio
-    //Invoca o metodo do {@link backgammonfx.tabuleiro#iniciapecas()}
+    //Invoca o metodo do {@link gamaofx.tabuleiro#iniciapecas()}
     public void selecionartabinicio() {
         myImageView2.setImage(tabinicio);
         tab1 = new tabuleiro();
@@ -125,7 +131,7 @@ public class HelloController implements Initializable{
     //Metodo ativado a partir de botão na tabela inicial</p>
     //Muda a imagem do scene builder para tabfim</p>
     //Invoca o metodo do
-    //{@link backgammonfx.tabuleiro#iniciapecastesteFinal()}</p>
+    //{@link gamaofx.tabuleiro#iniciapecastesteFinal()}</p>
     public void selecionartabfim() {
         myImageView2.setImage(tabfim);
         tab1 = new tabuleiro();
@@ -136,9 +142,9 @@ public class HelloController implements Initializable{
     //Cria jogador e adversário
     //Dá reset aos atributos para valores iniciais
     //Muda phase para 1
-    //invoca {@link backgammonfx.FXMLDocumentController#imprime()}
-    //invoca {@link backgammonfx.FXMLDocumentController#imprimeronda()}
-    //invoca {@link backgammonfx.FXMLDocumentController#imprimebotao()}
+    //invoca {@link gamaofx.HelloController#imprime()}
+    //invoca {@link gamaofx.HelloController#imprimeronda()}
+    //invoca {@link gamaofx.HelloController#imprimebotao()}
     public void iniciarjogo() {
 
         jog = new jogador(jogid, jogador, posjogX, posjogY);
@@ -158,9 +164,9 @@ public class HelloController implements Initializable{
 
     //Metodo associado a cada retangulo
     //Se phase == 2 invoca
-    //{@link backgammonfx.FXMLDocumentController#click1()}
+    //{@link gamaofx.HelloController#click1()}
     //Se phase == 3 invoca
-    //{@link backgammonfx.FXMLDocumentController#click2()}
+    //{@link gamaofx.HelloController#click2()}
     //@param event evento associado ao click da peça, a partir do metodo
     //event.getsource() é possivel retornar o id da peça
     public void pressed(MouseEvent event) {
@@ -207,7 +213,7 @@ public class HelloController implements Initializable{
     }
 
     //Metodo que anima a label ronda para simular uma mão a abanar os dados no
-    //final invoca {@link backgammonfx.FXMLDocumentController#imprimedados()}
+    //final invoca {@link gamaofx.HelloController#imprimedados()}
     public void animadados() {
         //Instantiating TranslateTransition class
         TranslateTransition translate = new TranslateTransition();
@@ -232,8 +238,8 @@ public class HelloController implements Initializable{
 
     //----------------------------IMPRIME----------------------------------------
      //Metodo que imprime retangulos e peças Invoca
-     //{@link backgammonfx.FXMLDocumentController#imprimedados()} Invoca
-     //{@link backgammonfx.FXMLDocumentController#imprimedados()}
+     //{@link gamaofx.HelloController#imprimedados()} Invoca
+     //{@link gamaofx.HelloController#imprimedados()}
     public void imprime() {
         imprimeretangulos();
         imprimepecas();
@@ -292,9 +298,9 @@ public class HelloController implements Initializable{
 
     //Guarda no array Rects[], retangulos com os atributos da classe casa
     //No final invoca
-    //{@link backgammonfx.FXMLDocumentController#imprimeretangulosjog} com os
+    //{@link gamaofx.HelloController#imprimeretangulosjog} com os
     //atributos do jogador
-    //E invoca {@link backgammonfx.FXMLDocumentController#imprimeretangulosjog}
+    //E invoca {@link gamaofx.HelloController#imprimeretangulosjog}
     //novamente com os atributos do adversario
     public void imprimeretangulos() {
         Rects = new ArrayList<>();
@@ -343,9 +349,9 @@ public class HelloController implements Initializable{
      //Guarda no array duplo Circs[][], circulos com os atributos da classe
      //peca
      //No final invoca
-     //{@link backgammonfx.FXMLDocumentController#imprimepecasjog} com os
+     //{@link gamaofx.HelloController#imprimepecasjog} com os
      //atributos do jogador
-     //E invoca {@link backgammonfx.FXMLDocumentController#imprimepecasjog}
+     //E invoca {@link gamaofx.HelloController#imprimepecasjog}
      //novamente com os atributos do adversario
     @FXML
     public void imprimepecas() {
@@ -404,8 +410,8 @@ public class HelloController implements Initializable{
     }
 
     //Metodo que cria e imprime dados para o ecra invoca
-    //{@link backgammonfx.dado#rodadado} para dado 1 invoca
-    //{@link backgammonfx.dado#rodadado} para dado 2
+    //{@link gamaofx.dado#rodadado} para dado 1 invoca
+    //{@link gamaofx.dado#rodadado} para dado 2
     public void imprimedados() {
 
         tab1.dado1.rodadado(pane, 1);
@@ -515,9 +521,9 @@ public class HelloController implements Initializable{
 
     //Metodo associado ao segundo click (seleção de onde a peça irá mover) caso
     //a posição final seja uma casa de um jogador invoca
-    //{@link backgammonfx.FXMLDocumentController#clickfimjogo()} caso a posição
+    //{@link gamaofx.HelloController#clickfimjogo()} caso a posição
     //final seja outra invoca
-    //{@link backgammonfx.FXMLDocumentController#clicknormal()}
+    //{@link gamaofx.HelloController#clicknormal()}
     public void click2() {
         System.out.print(finID);
 
@@ -539,7 +545,7 @@ public class HelloController implements Initializable{
     }
 
     //Click associado a peça sair para a casa do jogador no final invoca
-    //{@link backgammonfx.FXMLDocumentController#condicaovitoria}
+    //{@link gamaofx.HelloController#condicaovitoria}
     public void clickfimjogo() {
         //Adicionar peça para acertar a posição da animação final
         jog.addpecablank();
@@ -690,9 +696,9 @@ public class HelloController implements Initializable{
     }
 
     //Recebe a jogada do jogador adversario invoca
-    //{@link backgammonfx.Server#receberpecas} invoca
-    //{@link backgammonfx.Server#receberJog()} para jogador 1 invoca
-    //{@link backgammonfx.Server#receberJog()} para jogador 2
+    //{@link gamaofx.Server#receberpecas} invoca
+    //{@link gamaofx.Server#receberJog()} para jogador 1 invoca
+    //{@link gamaofx.Server#receberJog()} para jogador 2
     public void receberjogada() {
         //recebe pecas
         try {
@@ -730,9 +736,9 @@ public class HelloController implements Initializable{
     //---------------------------------server-----------------------------------------
 
     //Verifica se um espaço contem uma peça adversaria e caso tenha invoca
-    //{@link backgammonfx.casa#addpecabranca()} ou
-    //{@link backgammonfx.casa#addpecapreta()} para inserir a peça no centro e
-    //em seguida invoca {@link backgammonfx.casa#rempeca()} para remover a peça
+    //{@link gamaofx.casa#addpecabranca()} ou
+    //{@link gamaofx.casa#addpecapreta()} para inserir a peça no centro e
+    //em seguida invoca {@link gamaofx.casa#rempeca()} para remover a peça
     public void comivel() {
         //Só há uma situação em que a peça pousa numa peça adversária (clicavel) que é quando esta é comivel
         if (!tab1.casas.get(finID).pecas.isEmpty()) {

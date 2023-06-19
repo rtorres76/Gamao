@@ -1,4 +1,4 @@
-package com.example.gamao;
+package gamaofx;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

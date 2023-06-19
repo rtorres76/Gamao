@@ -1,4 +1,4 @@
-package com.example.gamao;
+package gamaofx;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
