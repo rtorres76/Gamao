@@ -9,7 +9,7 @@ public class Server {
     ServerSocket ss;
     ObjectInputStream din;
     ObjectOutputStream dout;
-    //packet p;
+    packet p;
     jogador jog;
     static final int PORT = 3192;
     ArrayList<casa> casas;
@@ -64,8 +64,8 @@ public class Server {
     public void receber() throws IOException, ClassNotFoundException {
 
         System.out.println("A RECEBER");
-        //p = (packet) din.readObject();
-        //System.out.println("mensage recebida:" + p.message);
+        p = (packet) din.readObject();
+        System.out.println("mensage recebida:" + p.message);
 
     }
 

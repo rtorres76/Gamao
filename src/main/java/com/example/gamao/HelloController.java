@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class HelloController {
+public class HelloController implements Initializable{
 
     //Pane criado no screenbuilder que irá conter todos os componentes
     @FXML
@@ -43,7 +43,7 @@ public class HelloController {
     //Jogador e adversario
     jogador jog, adv;
     //Instancia da classe packet apenas serve para testar conexão
-    //packet p;
+    packet p;
     //rectangulos que representam as casas
     ArrayList<Rectangle> Rects;
     //Circulos que representam as peças
