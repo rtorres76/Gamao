@@ -1,17 +1,30 @@
-package gamaofx;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package backgammonfx;
 
 import java.util.ArrayList;
 
-//Tabuleiro que contem array de peças a ser enviado para o cliente
+/**
+ * <p>
+ * Tabuleiro que contem array de peças a ser enviado para o cliente
+ * </p>
+ *
+ * @author Joao_Pires
+ * @version 1.0
+ * @since 22-06-2021
+ */
 public class tabuleiro {
 
     ArrayList<casa> casas;
     dado dado1, dado2;
 
-    /**
-     * Construtor
-     * Preenche as casas nas posições corretas
-     */
+/**
+ * Construtor
+ * Preenche as casas nas posições corretas
+ */
     public tabuleiro() {
         casas = new ArrayList<>();
         dado1 = new dado();
@@ -19,7 +32,7 @@ public class tabuleiro {
         for (int i = 0; i <= 25; i++) {
             if (i == 0){
                 casas.add(new casa(i, 300, 0, ""));
-                System.out.println(i);
+                System.out.println(i);            
             }
             else if (i <= 6) {
                 casas.add(new casa(i, 650 - (i * 50), 0, "cima"));
@@ -35,19 +48,22 @@ public class tabuleiro {
                 System.out.println(i);
             } else if (i == 25){
                 casas.add(new casa(i, 300, 220, ""));
-                System.out.println(i);
+                System.out.println(i);                
             }
 
         }
         //variação para teste se condiçoes de vitoria estao corretas
     }
 
-
-    public final void iniciapecas() {
+    /**
+     * <p>Preenche cada casa do array com a disposição de peças de um jogo normal</p>
+     *Invoca em cada uma das casas dentro do array, o metodo {@link backgammonfx.casa#addpecabranca} e {@link backgammonfx.casa#addpecapreta}
+     */
+    public final void iniciapecas() {       
 
         //--pecas brancas
         for (int i = 0; i < 2; i++) {
-            casas.get(24).addpecabranca();
+            casas.get(24).addpecabranca();       
         }
         for (int i = 0; i < 5; i++) {
             casas.get(13).addpecabranca();
@@ -76,30 +92,33 @@ public class tabuleiro {
     }
     //impressão de peças para simular o final do jogo
 
-
-    public final void iniciapecastesteFinal() {
-
-        for (int i = 0; i < 14; i++) {
-            casas.get(24).addpecabranca();
+    /**
+     * <p>Preenche cada casa do array com a disposição de peças para testar as a fase final do jogo</p>
+     *Invoca em cada uma das casas dentro do array, o metodo {@link backgammonfx.casa#addpecabranca} e {@link backgammonfx.casa#addpecapreta}
+     */
+        public final void iniciapecastesteFinal() {
+            
+                for (int i = 0; i < 14; i++) {
+            casas.get(24).addpecabranca();     
         }
-        casas.get(19).addpecabranca();
+            casas.get(19).addpecabranca();    
 
         //pecas pretas
         for (int i = 0; i < 14; i++) {
             casas.get(1).addpecapreta();
         }
-        casas.get(7).addpecapreta();
-
+            casas.get(7).addpecapreta();
+     
 
 
     }
-
+    
     /**
      *<p>Testa se todas as peças do jogador encontram-se no ultimo quadrante</p>
      * @param jogador o jogador ao qual vai ser testado
      * @return true se todas as peças se encontrarem no ultimo parametro
      */
-    public boolean fimdejogo(String jogador) {
+    public boolean fimdejogo(String jogador) {      
         int total = 0;
         //percorre casas 24 a 19 se for o jogador 1
         if ("jog1".equals(jogador)) {
@@ -109,7 +128,7 @@ public class tabuleiro {
                     //se as peças pertencem ao jogador 1
                     if (casas.get(i).pecas.get(0).jogador.compareTo(jogador) == 0) {
                         total += casas.get(i).pecas.size();
-                        System.out.println("TOTAL " + total);
+                                System.out.println("TOTAL " + total);
                     }
                 }
             }
@@ -122,12 +141,12 @@ public class tabuleiro {
                     //se as peças pertencem ao jogador 2
                     if (casas.get(i).pecas.get(0).jogador.compareTo(jogador) == 0) {
                         total += casas.get(i).pecas.size();
-                        System.out.println("TOTAL " + total);
+                                System.out.println("TOTAL " + total);
                     }
                 }
             }
         }
-
+        
         return total >= 15;
     }
 

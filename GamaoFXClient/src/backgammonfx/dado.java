@@ -1,4 +1,9 @@
-package gamaofx;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package backgammonfx;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
@@ -59,7 +64,7 @@ public class dado {
      */
     public void redraw(Pane pane) {
         pane.getChildren().remove(rect);
-        pane.getChildren().remove(num);
+        pane.getChildren().remove(num);        
         pane.getChildren().add(rect);
         pane.getChildren().add(num);
     }
@@ -73,15 +78,15 @@ public class dado {
         uso = true;
         rect.setFill(Color.GREY);
     }
-
+    
     /**
      *Reseta os atributos do dado
      */
     public void resetdado(){
         face = 0;
-        rect = null;
-        num = null;
-        uso = false;
+    rect = null;
+    num = null;
+    uso = false;
     }
 
 }

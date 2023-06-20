@@ -1,25 +1,9 @@
-package gamaofx;
+package gamaofxclient;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- * <p>
- * A classe casa representa cada casa do tabuleiro guarda o ID, posição, cor e o
- * boolean jogavel que representa se esta pode ser selecionada
- *</p>
- * <p>
- * Para poder ser enviada ao cliente é necessário implementar serializable porem
- * este metodo impede a casa de contar o retangulo associado a ela então contem
- * os valores a introduzir no retangulo
- * </p>
- *
- * @author Joao_Pires
- * @version 1.0
- * @since 22-06-2021
- */
 public class casa implements Serializable {
-
     ArrayList<peca> pecas;
     final int id;
     int posX, posY;
