@@ -82,10 +82,10 @@ public class HelloController implements Initializable{
 
         //--Inicio Jogo
 
-        white = new Image(getClass().getResourceAsStream("d.jpg"));
-        black = new Image(getClass().getResourceAsStream("black.jpg"));
-        tabinicio = new Image(getClass().getResourceAsStream("tabuleiroinicio.jpg"));
-        tabfim = new Image(getClass().getResourceAsStream("tabuleirofinal.jpg"));
+        white = new Image(getClass().getResourceAsStream("assets/d.jpg"));
+        black = new Image(getClass().getResourceAsStream("assets/black.jpg"));
+        tabinicio = new Image(getClass().getResourceAsStream("assets/tabuleiroinicio.jpg"));
+        tabfim = new Image(getClass().getResourceAsStream("assets/tabuleirofinal.jpg"));
         tab1 = new tabuleiro();
         tab1.iniciapecas();
     }
