@@ -9,10 +9,6 @@ import javafx.scene.shape.Rectangle;
  * <p>
  *A classe dado representa os dados a serem imprimidos para o ecra
  * </p>
- *
- * @author Joao_Pires
- * @version 1.0
- * @since 22-06-2021
  */
 public class dado {
 
@@ -50,7 +46,6 @@ public class dado {
         num.setScaleY(3);
         pane.getChildren().add(rect);
         pane.getChildren().add(num);
-
     }
 
     /**

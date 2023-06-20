@@ -74,25 +74,6 @@ public class tabuleiro {
         }
 
     }
-    //impressão de peças para simular o final do jogo
-
-
-    public final void iniciapecastesteFinal() {
-
-        for (int i = 0; i < 14; i++) {
-            casas.get(24).addpecabranca();
-        }
-        casas.get(19).addpecabranca();
-
-        //pecas pretas
-        for (int i = 0; i < 14; i++) {
-            casas.get(1).addpecapreta();
-        }
-        casas.get(7).addpecapreta();
-
-
-
-    }
 
     /**
      *<p>Testa se todas as peças do jogador encontram-se no ultimo quadrante</p>

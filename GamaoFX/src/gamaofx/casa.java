@@ -13,10 +13,6 @@ import java.util.ArrayList;
  * este metodo impede a casa de contar o retangulo associado a ela então contem
  * os valores a introduzir no retangulo
  * </p>
- *
- * @author Joao_Pires
- * @version 1.0
- * @since 22-06-2021
  */
 public class casa implements Serializable {
 
