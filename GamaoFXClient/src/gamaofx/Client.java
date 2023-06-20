@@ -1,4 +1,4 @@
-package gamaofxclient;
+package gamaofx;
 
 import java.io.*;
 import java.net.*;
@@ -15,8 +15,8 @@ public class Client {
     /**
      *Construtor
      * dá inicio ao cliente e envia servidor um packet para testar a ligação
-     * invoca {@link gamaofxclient.Client#StartServer}
-     * invoca {@link gamaofxclient.Client#enviar}
+     * invoca {@link gamaofx.Client#StartServer}
+     * invoca {@link gamaofx.Client#enviar}
      * @throws Exception caso o servidor não responda ou não consiga encontrar a classe
      */
     public Client() throws Exception {

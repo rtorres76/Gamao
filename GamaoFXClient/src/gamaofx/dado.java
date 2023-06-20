@@ -1,4 +1,4 @@
-package gamaofxclient;
+package gamaofx;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;

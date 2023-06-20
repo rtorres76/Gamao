@@ -1,4 +1,4 @@
-package gamaofxclient;
+package gamaofx;
 
 import java.io.Serializable;
 import java.util.ArrayList;
