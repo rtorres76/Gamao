@@ -256,7 +256,7 @@ public class HelloController implements Initializable{
 
         if (jogador.equals(jog.jogador)) {
             if (fimjogo) {
-                Rects.get(id).setFill(Color.RED);
+                Rects.get(id).setFill(Color.DARKBLUE);
             } else {
                 Rects.get(id).setFill(Color.BLACK);
             }
@@ -314,11 +314,11 @@ public class HelloController implements Initializable{
             Rects.get(i).setLayoutY(tab1.casas.get(i).posY);
 
             if ("cima".equals(tab1.casas.get(i).cor)) {
-                Rects.get(i).setFill(Color.AQUA);
+                Rects.get(i).setFill(Color.BEIGE);
                 Rects.get(i).setStroke(Color.BLACK);
             }
             if ("baixo".equals(tab1.casas.get(i).cor)) {
-                Rects.get(i).setFill(Color.CHOCOLATE);
+                Rects.get(i).setFill(Color.RED);
                 Rects.get(i).setStroke(Color.BLACK);
             }
             if ("".equals(tab1.casas.get(i).cor)) {
@@ -494,7 +494,7 @@ public class HelloController implements Initializable{
 
         });
         //desbloqueio da ultima posicao
-        Rects.get(iniID).setFill(Color.RED);
+        Rects.get(iniID).setFill(Color.DARKBLUE);
         if (fimjogo) {
             if (!tab1.dado1.uso && posID1 >= 25 || posID1 <= 0) {
                 Rects.get(jog.id).setDisable(false);
@@ -563,7 +563,7 @@ public class HelloController implements Initializable{
         }
         //Remove peça do inicio
         tab1.casas.get(iniID).rempeca();
-        Rects.get(finID).setFill(Color.BLUE);
+        Rects.get(finID).setFill(Color.YELLOW);
         //verificar que dado escolheu
 
         //caso a pos de destino seja 27 as peças estao a moverse na direcao contraria entao é necessario verificaçao de dados diferente
@@ -634,7 +634,7 @@ public class HelloController implements Initializable{
         if (!fimjogo) {
             fimjogo = tab1.fimdejogo(jogador);
         }
-        Rects.get(finID).setFill(Color.BLUE);
+        Rects.get(finID).setFill(Color.YELLOW);
         //verificar que dado escolheu (a segunda condição é para caso os dois dados sejam iguais)
         if (finID == posID1 && !tab1.dado1.uso) {
             tab1.dado1.usadado();

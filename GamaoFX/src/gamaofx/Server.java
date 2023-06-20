@@ -36,7 +36,7 @@ public class Server {
 
             dout = new ObjectOutputStream(s.getOutputStream());
             din = new ObjectInputStream(s.getInputStream());
-            System.out.println("server up and running");
+            System.out.println("Server up and running");
 
         } catch (IOException ex) {
             System.out.println(ex);
@@ -65,7 +65,7 @@ public class Server {
 
         System.out.println("A RECEBER");
         p = (packet) din.readObject();
-        System.out.println("mensage recebida:" + p.message);
+        System.out.println("Mensagem recebida:" + p.message);
 
     }
 
@@ -79,7 +79,7 @@ public class Server {
 
         System.out.println("A ENVIAR CASAS");
         dout.writeObject(tab1.casas);
-        System.out.println("mensage enviada");
+        System.out.println("Mensagem enviada");
 
     }
     //-------------------------RECEBER CASAS-------------------------------------
@@ -92,7 +92,7 @@ public class Server {
 
         System.out.println("A RECEBER casas");
         casas = (ArrayList<casa>) din.readObject();
-        System.out.println("mensage recebida:");
+        System.out.println("Mensagem recebida:");
         return casas;
     }
 
@@ -106,7 +106,7 @@ public class Server {
 
         System.out.println("A ENVIAR:" + jog.jogador);
         dout.writeObject(jog);
-        System.out.println("mensage enviada");
+        System.out.println("Mensagem enviada");
 
     }
     //-------------------------RECEBER JOG-------------------------------------
@@ -119,7 +119,7 @@ public class Server {
 
         System.out.println("A RECEBER jogador");
         jog = (jogador) din.readObject();
-        System.out.println("mensage recebida:" + jog.jogador);
+        System.out.println("Mensagem recebida:" + jog.jogador);
         return jog;
     }
 }
