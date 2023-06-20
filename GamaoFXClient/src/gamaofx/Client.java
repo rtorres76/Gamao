@@ -65,9 +65,9 @@ public class Client {
     public void enviar() throws IOException, ClassNotFoundException {
 
         System.out.println("A ENVIAR");
-        p = new packet("A bueno ADIOS MASTER :c");
+        p = new packet("ADEUS MASTER");
         dout.writeObject(p);
-        System.out.println("mensage enviada");
+        System.out.println("Mensagem enviada");
 
     }
     //-------------------------RECEBER CASAS-------------------------------------
@@ -83,7 +83,7 @@ public class Client {
 
         System.out.println("A RECEBER casas");
         casas = (ArrayList<casa>) din.readObject();
-        System.out.println("mensage recebida:");
+        System.out.println("Mensagem recebida:");
         return casas;
     }
     //------------------------ENVIAR CASAS---------------------------------------
@@ -98,7 +98,7 @@ public class Client {
 
         System.out.println("A ENVIAR CASAS");
         dout.writeObject(tab1.casas);
-        System.out.println("mensage enviada");
+        System.out.println("Mensagem enviada");
 
     }
     //------------------------ENVIAR JOG---------------------------------------
@@ -113,7 +113,7 @@ public class Client {
 
         System.out.println("A ENVIAR:" + jog.jogador);
         dout.writeObject(jog);
-        System.out.println("mensage enviada");
+        System.out.println("Mensagem enviada");
 
     }
     //-------------------------RECEBER JOG-------------------------------------
@@ -128,7 +128,7 @@ public class Client {
 
         System.out.println("A RECEBER jogador");
         jog = (jogador) din.readObject();
-        System.out.println("mensage recebida:" + jog.jogador);
+        System.out.println("Mensagem recebida:" + jog.jogador);
         return jog;
     }
 }
