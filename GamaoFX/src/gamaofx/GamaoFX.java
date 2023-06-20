@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class GamaoFX extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("gamaofx/scene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("scene.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
