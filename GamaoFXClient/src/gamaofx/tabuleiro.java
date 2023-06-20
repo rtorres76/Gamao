@@ -1,4 +1,4 @@
-package gamaofxclient;
+package gamaofx;
 
 import java.util.ArrayList;
 public class tabuleiro {

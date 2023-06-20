@@ -1,4 +1,4 @@
-package gamaofxclient;
+package gamaofx;
 
 import java.io.IOException;
 import java.net.URL;
@@ -382,8 +382,8 @@ public class Hello2Controller implements Initializable{
 
     /**
      *Metodo que cria e imprime dados para o ecra
-     * invoca {@link gamaofxclient.dado#rodadado} para dado 1
-     * invoca {@link gamaofxclient.dado#rodadado} para dado 2
+     * invoca {@link gamaofx.dado#rodadado} para dado 1
+     * invoca {@link gamaofx.dado#rodadado} para dado 2
      */
     public void imprimedados() {
 
@@ -689,9 +689,9 @@ public class Hello2Controller implements Initializable{
 
     /**
      *Recebe a jogada do jogador adversario
-     * invoca {@link gamaofxclient.Client#receberpecas}
-     * invoca {@link gamaofxclient.Client#receberJog()} para jogador 1
-     * invoca {@link gamaofxclient.Client#receberJog()} para jogador 2
+     * invoca {@link gamaofx.Client#receberpecas}
+     * invoca {@link gamaofx.Client#receberJog()} para jogador 1
+     * invoca {@link gamaofx.Client#receberJog()} para jogador 2
      */
     public void receberjogada() {
         //recebe pecas
@@ -732,9 +732,9 @@ public class Hello2Controller implements Initializable{
     //---------------------------------server-----------------------------------------
 
     /**
-     *Verifica se um espaço contem uma peça adversaria e caso tenha invoca {@link gamaofxclient.casa#addpecabranca()} ou {@link gamaofxclient.casa#addpecapreta()}
+     *Verifica se um espaço contem uma peça adversaria e caso tenha invoca {@link gamaofx.casa#addpecabranca()} ou {@link gamaofx.casa#addpecapreta()}
      * para inserir a peça no centro
-     * e em seguida invoca {@link gamaofxclient.casa#rempeca()} para remover a peça
+     * e em seguida invoca {@link gamaofx.casa#rempeca()} para remover a peça
      */
     public void comivel() {
         //Só há uma situação em que a peça pousa numa peça adversária (clicavel) que é quando esta é comivel
