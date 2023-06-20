@@ -84,8 +84,6 @@ public class HelloController implements Initializable{
 
         white = new Image(getClass().getResourceAsStream("assets/d.jpg"));
         black = new Image(getClass().getResourceAsStream("assets/black.jpg"));
-        tabinicio = new Image(getClass().getResourceAsStream("assets/tabuleiroinicio.jpg"));
-        tabfim = new Image(getClass().getResourceAsStream("assets/tabuleirofinal.jpg"));
         tab1 = new tabuleiro();
         tab1.iniciapecas();
     }
@@ -118,24 +116,6 @@ public class HelloController implements Initializable{
         posadvY = 0;
         jogid = 26;
         advid = 27;
-    }
-    //Metodo ativado a partir de botão na tabela inicial
-    //Muda a imagem do scene builder para tabinicio
-    //Invoca o metodo do {@link gamaofx.tabuleiro#iniciapecas()}
-    public void selecionartabinicio() {
-        myImageView2.setImage(tabinicio);
-        tab1 = new tabuleiro();
-        tab1.iniciapecas();
-    }
-
-    //Metodo ativado a partir de botão na tabela inicial</p>
-    //Muda a imagem do scene builder para tabfim</p>
-    //Invoca o metodo do
-    //{@link gamaofx.tabuleiro#iniciapecastesteFinal()}</p>
-    public void selecionartabfim() {
-        myImageView2.setImage(tabfim);
-        tab1 = new tabuleiro();
-        tab1.iniciapecastesteFinal();
     }
 
     //inicia/reinicia jogo
