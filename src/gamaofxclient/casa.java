@@ -3,6 +3,7 @@ package gamaofxclient;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+//sa
 public class casa implements Serializable {
     ArrayList<peca> pecas;
     final int id;
