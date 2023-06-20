@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author User
+ * @author User2
  */
 public class BackgammonFX_Client extends Application {
 
