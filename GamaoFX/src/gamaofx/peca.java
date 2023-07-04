@@ -22,5 +22,4 @@ public peca(String jogador, int posX, int posY) {
     this.jogador = jogador;
 
     }
-
 }

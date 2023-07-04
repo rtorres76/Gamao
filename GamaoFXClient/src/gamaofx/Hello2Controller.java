@@ -88,7 +88,7 @@ public class Hello2Controller implements Initializable{
         receberjogada();
         jogador = jog.jogador;
         adversario = adv.jogador;
-        System.out.println(jogador + " essss " + adversario);
+        System.out.println(jogador + " vs " + adversario);
         //--------------------------IMPRIMIR------------------------------------
         phase = 1;
         System.out.println("Fase de jogo:" + phase);
